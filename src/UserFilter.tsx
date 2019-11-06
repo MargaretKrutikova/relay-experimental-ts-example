@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "babel-plugin-relay/macro";
 import { useFragment } from "react-relay/hooks";
 import { Roles } from "./Roles";
-import { Divisions } from "./Divisions";
 import { UserFilter_data$key } from "./__generated__/UserFilter_data.graphql";
 
 const userFilterFragment = graphql`
