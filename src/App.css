@@ -15,8 +15,27 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-bottom: 50px;
 }
 
 .App-link {
   color: #09d3ac;
+}
+
+.App-container {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+
+.App-company-filter {
+  display: flex;
+}
+
+.App-column {
+  width: 30%;
+}
+
+.App-company-filter {
+  display: flex;
 }

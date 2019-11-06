@@ -3,20 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "react": "^0.0.0-experimental-f6b8d31a7",
+    "react-dom": "^0.0.0-experimental-f6b8d31a7",
+    "react-relay": "^0.0.0-experimental-a1a40b68",
+    "react-scripts": "3.2.0",
+    "relay-runtime": "^7.0.0",
+    "typescript": "3.7.2"
+  },
+  "devDependencies": {
     "@types/jest": "24.0.22",
     "@types/node": "12.12.6",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
-    "typescript": "3.7.2"
+    "@types/react-relay": "^7.0.0",
+    "@types/relay-runtime": "^6.0.9",
+    "babel-plugin-relay": "^7.0.0",
+    "get-graphql-schema": "^2.1.2",
+    "graphql": "^14.5.8",
+    "relay-compiler": "^7.0.0",
+    "relay-compiler-language-typescript": "^10.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "relay": "relay-compiler --language typescript --src ./src/ --extensions=tsx --extensions=ts --schema ./schema.graphql",
+    "schema": "get-graphql-schema https://api.graph.cool/relay/v1/ck2nca90450tp01897udlqboc > schema.graphql"
   },
   "eslintConfig": {
     "extends": "react-app"

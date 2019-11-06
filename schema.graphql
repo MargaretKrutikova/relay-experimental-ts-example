@@ -1,0 +1,717 @@
+input CreateDivision {
+  name: String!
+}
+
+input CreateDivisionInput {
+  name: String!
+  clientMutationId: String!
+}
+
+type CreateDivisionPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  division: Division
+  edge: DivisionEdge
+}
+
+input CreateRole {
+  description: String!
+  name: String!
+}
+
+input CreateRoleInput {
+  description: String!
+  name: String!
+  clientMutationId: String!
+}
+
+type CreateRolePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  role: Role
+  edge: RoleEdge
+}
+
+input CreateUser {
+  firstName: String!
+  lastName: String!
+}
+
+"""
+If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.
+"""
+type CreateUserPayload {
+  user: User
+  clientMutationId: String
+  viewer: Viewer!
+}
+
+input DeleteDivisionInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteDivisionPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  division: Division
+  edge: DivisionEdge
+  deletedId: ID
+}
+
+input DeleteRoleInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteRolePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  role: Role
+  edge: RoleEdge
+  deletedId: ID
+}
+
+input DeleteUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+  deletedId: ID
+}
+
+type Division implements Node {
+  id: ID!
+  name: String!
+}
+
+"""A connection to a list of items."""
+type DivisionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DivisionEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type DivisionEdge {
+  """The item at the end of the edge."""
+  node: Division!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input DivisionFilter {
+  """Logical AND on all given filters."""
+  AND: [DivisionFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [DivisionFilter!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+enum DivisionOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+"""HelloPayload"""
+type HelloPayload {
+  message: String!
+}
+
+input InvokeFunctionInput {
+  name: String!
+  input: String!
+  clientMutationId: String
+}
+
+type InvokeFunctionPayload {
+  result: String!
+  clientMutationId: String
+}
+
+type Mutation {
+  createDivision(input: CreateDivisionInput!): CreateDivisionPayload
+  createRole(input: CreateRoleInput!): CreateRolePayload
+  updateDivision(input: UpdateDivisionInput!): UpdateDivisionPayload
+  updateRole(input: UpdateRoleInput!): UpdateRolePayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  updateOrCreateDivision(input: UpdateOrCreateDivisionInput!): UpdateOrCreateDivisionPayload
+  updateOrCreateRole(input: UpdateOrCreateRoleInput!): UpdateOrCreateRolePayload
+  updateOrCreateUser(input: UpdateOrCreateUserInput!): UpdateOrCreateUserPayload
+  deleteDivision(input: DeleteDivisionInput!): DeleteDivisionPayload
+  deleteRole(input: DeleteRoleInput!): DeleteRolePayload
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload
+  createUser(input: SignupUserInput!): CreateUserPayload!
+  invokeFunction(input: InvokeFunctionInput!): InvokeFunctionPayload
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  viewer: Viewer!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Role implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
+"""A connection to a list of items."""
+type RoleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [RoleEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type RoleEdge {
+  """The item at the end of the edge."""
+  node: Role!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input RoleFilter {
+  """Logical AND on all given filters."""
+  AND: [RoleFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [RoleFilter!]
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+enum RoleOrderBy {
+  description_ASC
+  description_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+input SignupUserInput {
+  firstName: String!
+  lastName: String!
+  clientMutationId: String!
+}
+
+input UpdateDivision {
+  id: ID!
+  name: String
+}
+
+input UpdateDivisionInput {
+  id: ID!
+  name: String
+  clientMutationId: String!
+}
+
+type UpdateDivisionPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  division: Division
+  edge: DivisionEdge
+}
+
+input UpdateOrCreateDivisionInput {
+  update: UpdateDivision!
+  create: CreateDivision!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateDivisionPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  division: Division
+  edge: DivisionEdge
+}
+
+input UpdateOrCreateRoleInput {
+  update: UpdateRole!
+  create: CreateRole!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateRolePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  role: Role
+  edge: RoleEdge
+}
+
+input UpdateOrCreateUserInput {
+  update: UpdateUser!
+  create: CreateUser!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+input UpdateRole {
+  description: String
+  id: ID!
+  name: String
+}
+
+input UpdateRoleInput {
+  description: String
+  id: ID!
+  name: String
+  clientMutationId: String!
+}
+
+type UpdateRolePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  role: Role
+  edge: RoleEdge
+}
+
+input UpdateUser {
+  firstName: String
+  id: ID!
+  lastName: String
+}
+
+input UpdateUserInput {
+  firstName: String
+  id: ID!
+  lastName: String
+  clientMutationId: String!
+}
+
+type UpdateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+type User implements Node {
+  firstName: String!
+  id: ID!
+  lastName: String!
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input UserFilter {
+  """Logical AND on all given filters."""
+  AND: [UserFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [UserFilter!]
+  firstName: String
+
+  """All values that are not equal to given value."""
+  firstName_not: String
+
+  """All values that are contained in given list."""
+  firstName_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstName_not_in: [String!]
+
+  """All values less than the given value."""
+  firstName_lt: String
+
+  """All values less than or equal the given value."""
+  firstName_lte: String
+
+  """All values greater than the given value."""
+  firstName_gt: String
+
+  """All values greater than or equal the given value."""
+  firstName_gte: String
+
+  """All values containing the given string."""
+  firstName_contains: String
+
+  """All values not containing the given string."""
+  firstName_not_contains: String
+
+  """All values starting with the given string."""
+  firstName_starts_with: String
+
+  """All values not starting with the given string."""
+  firstName_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstName_ends_with: String
+
+  """All values not ending with the given string."""
+  firstName_not_ends_with: String
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+}
+
+enum UserOrderBy {
+  firstName_ASC
+  firstName_DESC
+  id_ASC
+  id_DESC
+  lastName_ASC
+  lastName_DESC
+}
+
+"""This is the famous Relay viewer object"""
+type Viewer {
+  allDivisions(filter: DivisionFilter, orderBy: DivisionOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DivisionConnection!
+  allRoles(filter: RoleFilter, orderBy: RoleOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): RoleConnection!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user: User
+  Division(id: ID): Division
+  Role(id: ID): Role
+  User(id: ID): User
+
+  """hello"""
+  hello(name: String): HelloPayload
+  id: ID!
+}
+
