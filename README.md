@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an example project demonstrating usage of `Relay` and `React` experimental with `Relay` hooks, `Suspense` and `Typescript`.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and in **not** ejected.
 
 ## Available Scripts
 
